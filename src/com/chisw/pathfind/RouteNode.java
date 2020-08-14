@@ -1,16 +1,16 @@
 package com.chisw.pathfind;
 
-class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
-    private final T current;
-    private T previous;
+class RouteNode implements Comparable<RouteNode> {
+    private final Cell current;
+    private Cell previous;
     private double routeScore;
     private double estimatedScore;
 
-    RouteNode(T current) {
+    RouteNode(Cell current) {
         this(current, null, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY);
     }
 
-    RouteNode(T current, T previous, double routeScore, double estimatedScore) {
+    RouteNode(Cell current, Cell previous, double routeScore, double estimatedScore) {
         this.current = current;
         this.previous = previous;
         this.routeScore = routeScore;
@@ -28,15 +28,15 @@ class RouteNode<T extends GraphNode> implements Comparable<RouteNode> {
         }
     }
 
-    public T getCurrent() {
+    public Cell getCurrent() {
         return current;
     }
 
-    public T getPrevious() {
+    public Cell getPrevious() {
         return previous;
     }
 
-    public void setPrevious(T previous) {
+    public void setPrevious(Cell previous) {
         this.previous = previous;
     }
 

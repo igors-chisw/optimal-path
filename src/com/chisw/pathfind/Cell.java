@@ -1,13 +1,13 @@
 package com.chisw.pathfind;
 
-public class Cell implements GraphNode {
+public class Cell {
 
     public Cell() {
         super();
     }
 
-    public Cell(String id, int row, int column, boolean obstacle) {
-        this.id = id;
+    public Cell(int row, int column, boolean obstacle) {
+        this.id = row + "_" + column;
         this.row = row;
         this.column = column;
         this.obstacle = obstacle;
@@ -17,8 +17,8 @@ public class Cell implements GraphNode {
     private int row;
     private int column;
     private boolean obstacle;
+    private int size;
 
-    @Override
     public String getId() {
         return id;
     }
@@ -49,5 +49,28 @@ public class Cell implements GraphNode {
 
     public void setObstacle(boolean obstacle) {
         this.obstacle = obstacle;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Cell cell = (Cell) o;
+
+        return id.equals(cell.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
