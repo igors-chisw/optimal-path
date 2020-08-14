@@ -65,6 +65,14 @@ public class RouteFinder {
 
     private boolean reachableForSize(int size, Cell cell) {
         if(size == 1) return true;
-        return SizeCellsUtil.getAllObjectCells(cell, size).stream().noneMatch(objectCell -> graph.getNode(objectCell.getId()).isObstacle());
+        return SizeCellsUtil.getAllObjectCells(cell, size).stream().noneMatch(objectCell -> {
+            Cell node;
+            try {
+                node = graph.getNode(objectCell.getId());
+            } catch (IllegalArgumentException e) {
+                return true;
+            }
+            return node.isObstacle();
+        });
     }
 }
